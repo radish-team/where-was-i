@@ -21,12 +21,9 @@ function Homepage({
       const parsed = await shows.json();
       setShowList(parsed);
     };
-
-    console.log(showList);
-
     getShows();
   }, []);
-
+  console.log("personalRankw = ", showList);
   return (
     <div className="homepage">
       <div className="homepage-card-container">
@@ -37,6 +34,7 @@ function Homepage({
               showname={show.showname}
               season={show.season}
               episode={show.episode}
+              personalRank={show.personal_ranking}
               singleShowId={show.show_id}
               setShowname={setShowname}
               setCurrentView={setCurrentView}

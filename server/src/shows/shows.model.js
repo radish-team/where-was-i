@@ -31,6 +31,7 @@ module.exports = {
         show_id: 'tv_shows.show_id',
         season: 'user_shows.season',
         episode: 'user_shows.episode',
+        personal_ranking: 'user_shows.personal_ranking',
         image: 'tv_shows.url',
       })
       .where('users.user_id', userId);
@@ -78,7 +79,7 @@ module.exports = {
     }
 
     if (checkUser) {
-      console.log('caught a bad guy')
+      console.log('caught a bad guy');
       return 'Hey it is already here';
     }
 
@@ -106,6 +107,7 @@ module.exports = {
       .update({
         season: progressObject.season,
         episode: progressObject.episode,
+        personal_ranking: progressObject.personal_ranking,
       });
   },
 };

@@ -5,6 +5,8 @@ import Update from "./Update";
 import Delete from "./Delete";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
+import UpdateRates from "./UpdateRate";
+import UpdateRate from "./UpdateRate";
 
 function Show({
   currentView,
@@ -19,6 +21,8 @@ function Show({
   const [deleteButton, setDeleteButton] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const [defaultView, setDefaultView] = useState(true);
+
+  const [rankButton, setRankButton] = useState(false); //Added 20-02
 
   let progressText = "Season " + progress[0] + ", " + "Episode " + progress[1];
 
@@ -43,6 +47,13 @@ function Show({
     e.preventDefault();
     setDefaultView(false);
     setDeleteButton(true);
+  }
+
+  function handleRankBtn(e) {
+    //added 20-02
+    e.preventDefault();
+    setDefaultView(false);
+    setRankButton(true);
   }
 
   function closeButton() {
@@ -90,6 +101,18 @@ function Show({
               setCurrentView={setCurrentView}
             />
           )}
+          {rankButton === true && (
+            <UpdateRate
+              rankButton={rankButton}
+              setRankButton={setRankButton}
+              showname={showname}
+              login={login}
+              showImage={showImage}
+              singleShowId={singleShowId}
+              setDefaultView={setDefaultView}
+              setCurrentView={setCurrentView}
+            />
+          )}
           {defaultView === true && (
             <>
               <p>{showInfo.overview}</p>
@@ -99,6 +122,9 @@ function Show({
                 </button>
                 <button onClick={handleDeleteBtn} className="btn delete-btn">
                   Delete Show
+                </button>
+                <button onClick={handleRankBtn} className="btn rank-btn">
+                  Rate this Series!!
                 </button>
               </div>
             </>

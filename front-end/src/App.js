@@ -1,28 +1,30 @@
-import './styles/App.css';
-import { useState, useEffect } from 'react';
-import Login from './components/Login';
-import Homepage from './components/Homepage';
-import Show from './components/Show';
-import Navbar from './components/Navbar';
-import AddShow from './components/addShow/AddShow';
+import "./styles/App.css";
+import { useState, useEffect } from "react";
+import Login from "./components/Login";
+import Homepage from "./components/Homepage";
+import Show from "./components/Show";
+import Navbar from "./components/Navbar";
+import AddShow from "./components/addShow/AddShow";
 
 function App() {
-  const [login, setLogin] = useState('false');
-  const [currentView, setCurrentView] = useState('');
+  const [login, setLogin] = useState("false");
+  const [currentView, setCurrentView] = useState("");
   const [userInfo, setUserInfo] = useState({});
-  const [showname, setShowname] = useState('');
+  const [showname, setShowname] = useState("");
   const [progress, setProgress] = useState([]);
-  const [singleShowId, setSingleShowId] = useState('');
-  const [showImage, setShowImage] = useState('');
+  const [singleShowId, setSingleShowId] = useState("");
+  const [showImage, setShowImage] = useState("");
+
+  const [personalRank, setPersonalRank] = useState("");
 
   function homeButtonHandler() {
-    setCurrentView('Homepage');
+    setCurrentView("Homepage");
   }
 
   function check() {
-    if (localStorage['user_id'] !== 'false') {
-      setLogin(localStorage['user_id']);
-      setCurrentView('Homepage');
+    if (localStorage["user_id"] !== "false") {
+      setLogin(localStorage["user_id"]);
+      setCurrentView("Homepage");
     }
   }
   useEffect(() => {
@@ -31,16 +33,16 @@ function App() {
 
   function renderSwitch(component) {
     switch (component) {
-      case 'AddNew':
+      case "AddNew":
         return (
-          <div className='add-new-show'>
+          <div className="add-new-show">
             <AddShow currentView={currentView} />
           </div>
         );
-      case 'SingleShow':
+      case "SingleShow":
         return (
           <>
-            <div className='Homepage'>
+            <div className="Homepage">
               <Homepage
                 login={login}
                 setLogin={setLogin}
@@ -66,9 +68,9 @@ function App() {
             />
           </>
         );
-      case 'Homepage':
+      case "Homepage":
         return (
-          <div className='Homepage'>
+          <div className="Homepage">
             <Homepage
               login={login}
               setLogin={setLogin}
@@ -80,19 +82,23 @@ function App() {
               setProgress={setProgress}
               setSingleShowId={setSingleShowId}
               setShowImage={setShowImage}
+              setPersonalRank={setPersonalRank}
+              personalRank={personalRank}
             />
           </div>
         );
+      default:
+        return;
     }
   }
 
   function addShowHandler() {
-    setCurrentView('AddNew');
+    setCurrentView("AddNew");
   }
 
-  if (login === 'false') {
+  if (login === "false") {
     return (
-      <div className='Login'>
+      <div className="Login">
         <Login
           login={login}
           setLogin={setLogin}
@@ -103,7 +109,7 @@ function App() {
     );
   } else {
     return (
-      <div className='main-page'>
+      <div className="main-page">
         <Navbar
           homeButtonHandler={homeButtonHandler}
           addShowHandler={addShowHandler}

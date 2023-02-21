@@ -1,27 +1,21 @@
-import { useState, useEffect } from "react";
-import Show from "./Show";
+import { useState } from "react";
 import "../styles/Show.css";
 import "../styles/Update.css";
 
-function Update({
-  progressButton,
-  setProgressButton,
+function UpdateRate({
+  setRankButton,
   showname,
   login,
   singleShowId,
-  progress,
   showImage,
   setDefaultView,
   setCurrentView,
 }) {
-  const [episodeSelect2, setEpisodeSelect2] = useState("");
-  const [seasonSelect2, setSeasonSelect2] = useState("");
-
-  const [rank, setRank] = useState("");
+  const [rankValue, setRankValue] = useState("");
 
   function goBack(e) {
     e.preventDefault();
-    setProgressButton(false);
+    setRankButton(false);
     setDefaultView(true);
   }
 
@@ -31,8 +25,7 @@ function Update({
       user_id: login,
       show_id: singleShowId,
       showname: showname,
-      season: seasonSelect2,
-      episode: episodeSelect2,
+      personal_ranking: rankValue,
       url: showImage,
     };
 
@@ -50,33 +43,24 @@ function Update({
   return (
     <div className="update">
       <br></br>
-      <h3>Update Progress</h3>
+      <h3>Rate this series!</h3>
       <div className="update-container">
         <form onSubmit={updateProgress}>
-          <label>Season</label>
+          <label>How good is this?</label>
           <input
-            type="text"
-            name="season"
-            value={seasonSelect2}
+            type="number"
+            name="rank"
+            value={rankValue}
+            max="10"
+            min="0"
             pattern="[0-9]+"
-            placeholder="Season Number, Ex 1"
+            placeholder="Rank: 1 - 10"
             required
-            onChange={(event) => setSeasonSelect2(event.target.value)}
-          />
-          <br></br>
-          <label>Episode</label>
-          <input
-            type="text"
-            name="Episode"
-            pattern="[0-9]+"
-            placeholder="Episode Number, Ex 12"
-            required
-            value={episodeSelect2}
-            onChange={(event) => setEpisodeSelect2(event.target.value)}
+            onChange={(event) => setRankValue(event.target.value)}
           />
           <div className="update-btn-container">
             <button type="submit" className="btn">
-              Update
+              Rate!
             </button>
             <button onClick={goBack} className="btn">
               Cancel
@@ -88,4 +72,4 @@ function Update({
   );
 }
 
-export default Update;
+export default UpdateRate;
