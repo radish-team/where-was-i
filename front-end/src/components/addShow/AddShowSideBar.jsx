@@ -38,27 +38,6 @@ function AddShowSideBar(props) {
     setSeasonsAndEpisodes(countSeasonsAndEpisodes);
     console.log(seasonsAndEpisodes);
   }
-
-  // function handleEpisode(e) {
-  //   const episodeNumber =
-  //     showInfo.seasons[parseInt(e.currentTarget.value)].episode_count;
-  //   setEpisodesPerSeason(episodeNumber);
-  //   const arrayOfNumbers = [];
-  //   for (let i = 1; i <= episodeNumber; i++) {
-  //     arrayOfNumbers.push(i);
-  //   }
-  //   setEpisodesPerSeason(arrayOfNumbers);
-  //   setSeasonSelectd(episodeNumber);
-  //   console.log(episodesPerSeason, seasonSelect);
-  // }
-
-  // function recordEpisode(e) {
-  //   setEpisodeSelected(parseInt(e.currentTarget.value));
-  //   console.log(typeof seasonSelect, typeof episodeSelect);
-  // }
-
-  // --
-
   async function updateDatabase(e) {
     e.preventDefault();
     const obj = {
@@ -98,58 +77,36 @@ function AddShowSideBar(props) {
           className="icon-button"
           onClick={closeButton}
         />
-        {showInfo && (
-          <div className="selectProgress">
-            <select
-              onChange={(event) => {
-                setSeasonSelectd(event.target.value);
-              }}
-            >
-              <option selected="true" disabled="disabled">
-                Season
-              </option>
-              {seasonsAndEpisodes &&
-                Object.keys(seasonsAndEpisodes).map((season) => {
-                  return <option value={season}>{season}</option>;
-                })}
-            </select>
-            <select
-              onChange={(event) => setEpisodeSelected(event.target.value)}
-            >
-              {" "}
-              <option selected="true" disabled="disabled">
-                Episode
-              </option>
-              {setSeasonSelectd &&
-                [...Array(seasonsAndEpisodes[seasonSelect])].map((e, i) => {
-                  return <option value={i + 1}>{i + 1}</option>;
-                })}
-            </select>
-          </div>
-        )}
         <form id="update-form" onSubmit={updateDatabase}>
-          <p>What season are you watching?</p>
-          <input
-            className="input-addnew"
-            type="text"
-            name="Season"
-            placeholder="Season Number, Ex 1"
-            value={seasonSelect}
-            pattern="[0-9]+"
-            required
-            onChange={(event) => setSeasonSelectd(event.target.value)}
-          />
-          <p>What episode are you watching?</p>
-          <input
-            className="input-addnew"
-            type="text"
-            name="Episode"
-            placeholder="Episode Number, Ex 12"
-            pattern="[0-9]+"
-            value={episodeSelect}
-            required
-            onChange={(event) => setEpisodeSelected(event.target.value)}
-          />
+          {showInfo && (
+            <div className="selectProgress">
+              <select
+                onChange={(event) => {
+                  setSeasonSelectd(event.target.value);
+                }}
+              >
+                <option selected="true" disabled="disabled">
+                  Season
+                </option>
+                {seasonsAndEpisodes &&
+                  Object.keys(seasonsAndEpisodes).map((season) => {
+                    return <option value={season}>{season}</option>;
+                  })}
+              </select>
+              <select
+                onChange={(event) => setEpisodeSelected(event.target.value)}
+              >
+                {" "}
+                <option selected="true" disabled="disabled">
+                  Episode
+                </option>
+                {setSeasonSelectd &&
+                  [...Array(seasonsAndEpisodes[seasonSelect])].map((e, i) => {
+                    return <option value={i + 1}>{i + 1}</option>;
+                  })}
+              </select>
+            </div>
+          )}
           <button type="submit" className="btn">
             Add show!
           </button>

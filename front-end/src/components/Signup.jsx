@@ -7,12 +7,12 @@ const firebase = require("firebase/app");
 const fire = require("firebase/auth");
 
 const app = firebase.initializeApp({
-  apiKey: "AIzaSyBdo-9REbvNterk3UIMaAJhvd35BK2v0ls",
-  authDomain: "where-was-i-426bb.firebaseapp.com",
-  projectId: "where-was-i-426bb",
-  storageBucket: "where-was-i-426bb.appspot.com",
-  messagingSenderId: "236551239143",
-  appId: "1:236551239143:web:406264d0b12a3428fc7942",
+  apiKey: "AIzaSyBCHwHZzuOtNhPwx2OBCFHrEidBlnaioB8",
+  authDomain: "wherewasi-633fd.firebaseapp.com",
+  projectId: "wherewasi-633fd",
+  storageBucket: "wherewasi-633fd.appspot.com",
+  messagingSenderId: "38900528085",
+  appId: "1:38900528085:web:4ab92dd100ce1fb55b035c",
 });
 const auth = fire.getAuth(app);
 //getUserId from Firebase and pass to App
