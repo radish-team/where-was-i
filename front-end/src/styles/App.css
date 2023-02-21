@@ -4,23 +4,25 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #212121;
+  font-family: 'Open Sans', sans-serif;
+}
+
 .main-page {
   display: flex;
   flex-direction: column;
-  /* height: 100vh; */
-  background-color: #2E353E;
+  min-height: fit-content;
 }
 
 .btn {
-  color: rgba(255, 166, 0, 0.789);
-  text-shadow: black 2px 2px ;
+  color: #EFDF9D;
   background-color: #1d5047;
   padding: 10px;
   margin: 5px;
   border: none;
   transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
   border-radius: 2px;
-  font-family:'Permanent Marker', cursive; 
   font-size: 18px;
 }
 

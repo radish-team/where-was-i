@@ -9,24 +9,30 @@
 }
 
 .delete-btn {
-  background-color: #cc1b1b;
-  color: #1d5047;
+  background-color: #c93a43;
+  color: #141414;
+}
+
+.images-container {
+  overflow: hidden;
+  margin-left: -20px;
 }
 
 .images-container img {
   height: 400px;
-  width: 300px;
-  border-radius: 5px;
+  width: 290px;
+  object-fit: cover;
   box-shadow: black 4px 4px 4px -2px;
 }
 
 .single-container {
-  width: 80%;
+  width: 70%;
   border-radius: 8px;
   height: 60%;
   overflow: hidden;
   box-shadow: black 8px 5px 15px;
-  background-color: #e99700;
+  background-color: #212121;
+  color:#EFDF9D;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,7 +71,7 @@
 .icon-button:hover {
   cursor: pointer;
   transform: scale(1.7);
-  color: #cc1b1b;
+  color: #c93a43;
 }
 
 @media (max-width: 800px) {

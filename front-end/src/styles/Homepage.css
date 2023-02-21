@@ -1,12 +1,8 @@
-.Homepage {
-  background-color: #2E353E;
-  height: 100%;
-}
 
 .homepage-card-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 2rem;
+  gap: 2.4rem;
   padding: 3rem;
 }
 

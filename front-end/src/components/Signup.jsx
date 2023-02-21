@@ -1,26 +1,26 @@
-import { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faUser, faLock } from '@fortawesome/free-solid-svg-icons';
-import '../styles/Login.css';
-import Swal from 'sweetalert2';
-const firebase = require('firebase/app');
-const fire = require('firebase/auth');
+import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faUser, faLock } from "@fortawesome/free-solid-svg-icons";
+import "../styles/Login.css";
+import Swal from "sweetalert2";
+const firebase = require("firebase/app");
+const fire = require("firebase/auth");
 
 const app = firebase.initializeApp({
-  apiKey: 'AIzaSyBdo-9REbvNterk3UIMaAJhvd35BK2v0ls',
-  authDomain: 'where-was-i-426bb.firebaseapp.com',
-  projectId: 'where-was-i-426bb',
-  storageBucket: 'where-was-i-426bb.appspot.com',
-  messagingSenderId: '236551239143',
-  appId: '1:236551239143:web:406264d0b12a3428fc7942',
+  apiKey: "AIzaSyBdo-9REbvNterk3UIMaAJhvd35BK2v0ls",
+  authDomain: "where-was-i-426bb.firebaseapp.com",
+  projectId: "where-was-i-426bb",
+  storageBucket: "where-was-i-426bb.appspot.com",
+  messagingSenderId: "236551239143",
+  appId: "1:236551239143:web:406264d0b12a3428fc7942",
 });
 const auth = fire.getAuth(app);
 //getUserId from Firebase and pass to App
 
 function Signup({ setIsSignUp }) {
-  const [loginEmail, setloginEmail] = useState('');
-  const [createPassword, setCreatePassword] = useState('');
-  const [createUsername, setCreateUsername] = useState('');
+  const [loginEmail, setloginEmail] = useState("");
+  const [createPassword, setCreatePassword] = useState("");
+  const [createUsername, setCreateUsername] = useState("");
 
   function createUser(e) {
     let check = true;
@@ -29,35 +29,35 @@ function Signup({ setIsSignUp }) {
       .createUserWithEmailAndPassword(auth, loginEmail, createPassword)
       .then(async (userCredential) => {
         var user = userCredential.user;
-        const checkstat = await fetch('https://where-was-i-server.onrender.com/user', {
+        const checkstat = await fetch("http://localhost:4000/user", {
           headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
+            Accept: "application/json",
+            "Content-Type": "application/json",
           },
-          method: 'POST',
+          method: "POST",
           body: JSON.stringify({
             auth_token: user.uid,
             username: createUsername,
             email: user.email,
           }),
-        }).then(Swal.fire('Good job your account was created you can login'));
+        }).then(Swal.fire("Good job your account was created you can login"));
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
+          icon: "error",
+          title: "Oops...",
           text: `${errorMessage}`,
         });
       });
-    const node = document.getElementsByClassName('user1');
-    node[0].value = '';
-    node[1].value = '';
-    node[2].value = '';
-    setCreatePassword('');
-    setloginEmail('');
-    setCreateUsername('');
+    const node = document.getElementsByClassName("user1");
+    node[0].value = "";
+    node[1].value = "";
+    node[2].value = "";
+    setCreatePassword("");
+    setloginEmail("");
+    setCreateUsername("");
     setIsSignUp(false);
   }
   function backToLogin() {
@@ -65,55 +65,55 @@ function Signup({ setIsSignUp }) {
   }
 
   return (
-    <div className='signup-container'>
+    <div className="signup-container">
       <h2>Signup for Where Was I?</h2>
       <h3>Keep track of all your TV show progress in one place.</h3>
-      <form onSubmit={createUser} className='form-signup'>
-        <div className='user-field'>
-          <label for='username'>
+      <form onSubmit={createUser} className="form-signup">
+        <div className="user-field">
+          <label for="username">
             <FontAwesomeIcon icon={faUser} />
           </label>
           <input
-            className='user1'
-            placeholder='Username'
-            type='text'
-            name='username'
+            className="user1"
+            placeholder="Username"
+            type="text"
+            name="username"
             value={createUsername}
             onChange={(event) => setCreateUsername(event.target.value)}
           />
         </div>
-        <div className='email-field'>
-          <label for='email'>
-            {' '}
+        <div className="email-field">
+          <label for="email">
+            {" "}
             <FontAwesomeIcon icon={faEnvelope} />
           </label>
           <input
-            className='user1'
-            placeholder='Email'
-            type='text'
-            name='email'
+            className="user1"
+            placeholder="Email"
+            type="text"
+            name="email"
             value={loginEmail}
             onChange={(event) => setloginEmail(event.target.value)}
           />
         </div>
-        <div className='pass-field'>
-          <label for='password'>
+        <div className="pass-field">
+          <label for="password">
             <FontAwesomeIcon icon={faLock} />
           </label>
           <input
-            className='user1'
-            placeholder='Password'
-            type='password'
-            name='password'
+            className="user1"
+            placeholder="Password"
+            type="password"
+            name="password"
             value={createPassword}
             onChange={(event) => setCreatePassword(event.target.value)}
           />
         </div>
-        <div className='btn-field'>
-          <button type='submit' className='btn'>
+        <div className="btn-field">
+          <button type="submit" className="btn">
             Signup
           </button>
-          <button onClick={backToLogin} className='btn delete-btn'>
+          <button onClick={backToLogin} className="btn delete-btn">
             Back
           </button>
         </div>

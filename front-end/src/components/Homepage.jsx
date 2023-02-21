@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import '../styles/Homepage.css';
-import MoviePoster from './MoviePoster';
+import { useState, useEffect } from "react";
+import "../styles/Homepage.css";
+import MoviePoster from "./MoviePoster";
 
 function Homepage({
   login,
@@ -16,18 +16,20 @@ function Homepage({
   useEffect(() => {
     const getShows = async () => {
       let shows = await fetch(
-        `https://where-was-i-server.onrender.com/user/shows?user_id=${login}`
+        `http://localhost:4000/user/shows?user_id=${login}`
       );
       const parsed = await shows.json();
       setShowList(parsed);
     };
 
+    console.log(showList);
+
     getShows();
   }, []);
 
   return (
-    <div className='homepage'>
-      <div className='homepage-card-container'>
+    <div className="homepage">
+      <div className="homepage-card-container">
         {showList.map((show, index) => {
           return (
             <MoviePoster

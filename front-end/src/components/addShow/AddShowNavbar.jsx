@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 function AddShowNavbar({ setSearchList }) {
   const [showlist, setShowlist] = useState([]);
@@ -12,7 +12,7 @@ function AddShowNavbar({ setSearchList }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    const searchInput = document.getElementsByClassName('find-show');
+    const searchInput = document.getElementsByClassName("find-show");
     getShowID(searchInput[0].value);
   };
 
@@ -22,24 +22,29 @@ function AddShowNavbar({ setSearchList }) {
         name: show.name,
         show_id: show.id,
         image: show.poster_path,
+        vote_average: show.vote_average, //add by david
+        overview: show.overview, // add by david
+        origin_country: show.origin_country, //add by david
       };
       lastArray.push(showObject);
       return lastArray;
     }, []);
-    setSearchList(showArray)
+    setSearchList(showArray);
   }, [showlist]);
 
   return (
-    <div className='addshow-nav'>
-      <form action='/'>
+    <div className="addshow-nav">
+      <form action="/">
         <input
-          type='text'
-          name='find-show'
-          className='find-show'
-          placeholder='Search Shows'
+          type="text"
+          name="find-show"
+          className="find-show"
+          placeholder="Search Shows"
           required
         />
-        <button onClick={handleClick} className='btn'>Search</button>
+        <button onClick={handleClick} className="btn">
+          Search
+        </button>
       </form>
     </div>
   );
